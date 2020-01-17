@@ -123,7 +123,6 @@ Widget addListItem(DockerImage _image, BuildContext context) {
         ),
         onPressed: () {
           database.put(_image.imageKey, _image.toJsonString());
-          print(_image.toJsonString());
         },
       ),
     ),
