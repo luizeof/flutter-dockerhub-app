@@ -9,16 +9,4 @@ class DynamicDarkMode with ChangeNotifier {
 
   /// Verifica se o App está em Dark Mode
   get isDarkMode => (DateTime.now().hour > 18 || DateTime.now().hour < 8);
-
-  /// Aplica o Dark Mode
-  void setDarkMode() {
-    database.put('dark_mode', true);
-    notifyListeners();
-  }
-
-  /// Aplica o Light Mode
-  void setLightMode() {
-    database.put('dark_mode', false);
-    notifyListeners();
-  }
 }

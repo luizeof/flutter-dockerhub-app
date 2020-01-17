@@ -56,18 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       MaterialPageRoute(builder: (context) => AddPage()));
                 },
               ),
-              IconButton(
-                icon: Icon(Icons.brightness_4),
-                onPressed: () {
-                  setState(
-                    () {
-                      themeProvider.isDarkMode
-                          ? themeProvider.setLightMode()
-                          : themeProvider.setDarkMode();
-                    },
-                  );
-                },
-              ),
             ],
           ),
           body: Container(
