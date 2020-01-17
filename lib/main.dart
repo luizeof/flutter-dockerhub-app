@@ -102,8 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               getImages();
               setState(() {});
             },
-            child: Icon(Icons.navigation),
-            backgroundColor: Colors.green,
+            child: Icon(Icons.refresh),
           ),
         ),
       ),
