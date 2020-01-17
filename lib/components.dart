@@ -89,7 +89,7 @@ Widget listItem(DockerImage _image, BuildContext context) {
   );
 }
 
-Widget selectListItem(DockerImage _image, BuildContext context) {
+Widget addListItem(DockerImage _image, BuildContext context) {
   themeProvider = Provider.of<DynamicDarkMode>(context);
 
   return Card(

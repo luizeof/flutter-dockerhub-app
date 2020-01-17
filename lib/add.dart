@@ -205,7 +205,7 @@ class _AddPageState extends State<AddPage> {
                           primary: false,
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext ctxt, int index) {
-                            return selectListItem(
+                            return addListItem(
                               snapshot.data[index],
                               context,
                             );
