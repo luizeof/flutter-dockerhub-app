@@ -1,6 +1,5 @@
 import 'package:docker_hub_api/docker_hub_api.dart';
 import 'dart:async';
-import 'package:http/http.dart' as http;
 
 DockerImage currentImage;
 
