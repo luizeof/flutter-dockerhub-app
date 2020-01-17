@@ -1,4 +1,6 @@
 import 'package:docker_hub_api/docker_hub_api.dart';
+import 'dart:async';
+import 'package:http/http.dart' as http;
 
 DockerImage currentImage;
 
@@ -11,6 +13,8 @@ DateTime lastFetch = new DateTime(2020, 01, 01, 00, 00, 00);
 List<DockerImage> imagesCache;
 
 var database;
+
+var settings;
 
 bool isEditMode = false;
 

@@ -21,7 +21,7 @@ dependencies:
   hive:
   hive_flutter:
   flutter_markdown:
-  docker_hub_api: ^1.0.8
+  docker_hub_api: ^1.0.9
   provider: ^4.0.1
   url_launcher: ^5.4.1
   flutter:

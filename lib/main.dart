@@ -12,11 +12,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
-  database = await Hive.openBox('repos');
-  var repo = new DockerRepository('luizeof');
-  dockerRepositories.add(repo);
-  var repo2 = new DockerRepository('nginx');
-  dockerRepositories.add(repo2);
+  database = await Hive.openBox('repositories');
+  settings = await Hive.openBox('settings');
+
   runApp(
     ChangeNotifierProvider<DynamicDarkMode>(
       create: (_) => DynamicDarkMode(),
@@ -96,13 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                   );
                 }),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              getImages();
-              setState(() {});
-            },
-            child: Icon(Icons.refresh),
           ),
         ),
       ),
