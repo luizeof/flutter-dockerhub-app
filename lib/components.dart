@@ -129,3 +129,28 @@ Widget selectListItem(DockerImage _image, BuildContext context) {
     ),
   );
 }
+
+Widget deleteListItem(DockerImage _image, BuildContext context) {
+  themeProvider = Provider.of<DynamicDarkMode>(context);
+  return Card(
+    child: ListTile(
+      title: Padding(
+        padding: EdgeInsets.all(6),
+        child: dockerImageMetaTitle(
+          "${_image.user}/${_image.name}",
+          context,
+        ),
+      ),
+      trailing: IconButton(
+        icon: Icon(
+          Icons.delete,
+          color: Theme.of(context).primaryColor,
+          size: 32,
+        ),
+        onPressed: () {
+          removeItem(_image.imageKey);
+        },
+      ),
+    ),
+  );
+}

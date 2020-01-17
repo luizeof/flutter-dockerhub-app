@@ -51,6 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text("Docker Hub"),
             actions: <Widget>[
               IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () {
+                  setState(() {
+                    isEditMode = !isEditMode;
+                  });
+                },
+              ),
+              IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
                   Navigator.push(context,
@@ -93,7 +101,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       return new ListView.builder(
                         itemCount: snapshot.data.length,
                         itemBuilder: (BuildContext ctxt, int index) {
-                          return listItem(snapshot.data[index], context);
+                          return (isEditMode == true)
+                              ? deleteListItem(snapshot.data[index], context)
+                              : listItem(snapshot.data[index], context);
                         },
                       );
                     }

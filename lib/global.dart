@@ -14,6 +14,8 @@ List<DockerImage> imagesCache;
 
 var database;
 
+bool isEditMode = false;
+
 Future<List<DockerImage>> getImages() async {
   Duration difference = DateTime.now().difference(lastFetch);
   if (difference.inMinutes > 10) {
@@ -30,4 +32,8 @@ Future<List<DockerImage>> getImages() async {
   } else {
     return imagesCache;
   }
+}
+
+void removeItem(String item) {
+  database.delete(item);
 }
