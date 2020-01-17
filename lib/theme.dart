@@ -1,24 +1,24 @@
 import 'package:flutter/foundation.dart';
+import 'global.dart';
 
 /// Provider para o Dark Mode
 class DynamicDarkMode with ChangeNotifier {
   /// Por padrão o App Começa com o modo Light Mode
   /// Você pode configurar um método de persistir o valor de
   /// [_isDarkMode] para que ele seja preservado quando o app for fechado
-  bool _isDarkMode = false;
 
   /// Verifica se o App está em Dark Mode
-  get isDarkMode => this._isDarkMode;
+  get isDarkMode => database.get('dark_mode', defaultValue: false);
 
   /// Aplica o Dark Mode
   void setDarkMode() {
-    this._isDarkMode = true;
+    database.put('dark_mode', true);
     notifyListeners();
   }
 
   /// Aplica o Light Mode
   void setLightMode() {
-    this._isDarkMode = false;
+    database.put('dark_mode', false);
     notifyListeners();
   }
 }

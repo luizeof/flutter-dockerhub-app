@@ -32,12 +32,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  void initState() {
-    super.initState();
-    getImages();
-  }
-
-  @override
   Widget build(BuildContext context) {
     themeProvider = Provider.of<DynamicDarkMode>(context);
     return MaterialApp(
@@ -51,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text("Docker Hub"),
             actions: <Widget>[
               IconButton(
-                icon: Icon(Icons.edit),
+                icon: Icon(isEditMode ? Icons.close : Icons.edit),
                 onPressed: () {
                   setState(() {
                     isEditMode = !isEditMode;
@@ -80,42 +74,33 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           body: Container(
-            child: FutureBuilder(
-              future: getImages(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<DockerImage>> snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                    return new Text('Input a URL to start');
-                  case ConnectionState.waiting:
-                    return new Center(child: new CircularProgressIndicator());
-                  case ConnectionState.active:
-                    return new Text('');
-                  case ConnectionState.done:
-                    if (snapshot.hasError) {
-                      return new Text(
-                        '${snapshot.error}',
-                        style: TextStyle(color: Colors.red),
-                      );
-                    } else {
-                      return new ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (BuildContext ctxt, int index) {
-                          return (isEditMode == true)
-                              ? deleteListItem(snapshot.data[index], context)
-                              : listItem(snapshot.data[index], context);
-                        },
-                      );
-                    }
-                }
-              },
-            ),
+            child: ValueListenableBuilder(
+                valueListenable: Hive.box('repos').listenable(),
+                builder: (context, box, widget) {
+                  var _items = List.from(database.values);
+                  var _images = <DockerImage>[];
+
+                  for (int i = 0; i <= _items.length - 1; i++) {
+                    try {
+                      _images.add(DockerImage.fromJson(
+                          jsonDecode(_items[i].toString())));
+                    } catch (e) {}
+                  }
+
+                  return new ListView.builder(
+                    itemCount: _images.length,
+                    itemBuilder: (BuildContext ctxt, int index) {
+                      return (isEditMode == true)
+                          ? deleteListItem(_images[index], context)
+                          : listItem(_images[index], context);
+                    },
+                  );
+                }),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              setState(() {
-                getImages();
-              });
+              getImages();
+              setState(() {});
             },
             child: Icon(Icons.navigation),
             backgroundColor: Colors.green,
@@ -123,8 +108,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        // When navigating to the "/second" route, build the SecondScreen widget.
         '/detail': (context) => new DetailPage(),
         '/add': (context) => new AddPage(),
       },

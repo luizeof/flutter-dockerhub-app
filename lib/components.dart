@@ -47,8 +47,7 @@ Widget listItem(DockerImage _image, BuildContext context) {
         isThreeLine: true,
         title: Padding(
           padding: EdgeInsets.all(6),
-          child:
-              dockerImageMetaTitle("${_image.user} / ${_image.name}", context),
+          child: dockerImageMetaTitle("${_image.user}/${_image.name}", context),
         ),
         subtitle: Padding(
           padding: EdgeInsets.all(6),
@@ -123,7 +122,8 @@ Widget selectListItem(DockerImage _image, BuildContext context) {
           size: 32,
         ),
         onPressed: () {
-          database.put(_image.imageKey, [_image.user, _image.name]);
+          database.put(_image.imageKey, _image.toJsonString());
+          print(_image.toJsonString());
         },
       ),
     ),
@@ -148,7 +148,7 @@ Widget deleteListItem(DockerImage _image, BuildContext context) {
           size: 32,
         ),
         onPressed: () {
-          removeItem(_image.imageKey);
+          database.delete(_image.imageKey);
         },
       ),
     ),

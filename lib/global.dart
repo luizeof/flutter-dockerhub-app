@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:docker_hub_api/docker_hub_api.dart';
 
 DockerImage currentImage;
@@ -18,6 +16,7 @@ bool isEditMode = false;
 
 Future<List<DockerImage>> getImages() async {
   Duration difference = DateTime.now().difference(lastFetch);
+
   if (difference.inMinutes > 10) {
     var _images = <DockerImage>[];
     var _items = List.from(database.values);
@@ -32,8 +31,4 @@ Future<List<DockerImage>> getImages() async {
   } else {
     return imagesCache;
   }
-}
-
-void removeItem(String item) {
-  database.delete(item);
 }
