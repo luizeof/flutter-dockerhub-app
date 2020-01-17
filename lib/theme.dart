@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'global.dart';
 
 /// Provider para o Dark Mode
 class DynamicDarkMode with ChangeNotifier {
