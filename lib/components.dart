@@ -124,7 +124,6 @@ Widget selectListItem(DockerImage _image, BuildContext context) {
         ),
         onPressed: () {
           database.put(_image.imageKey, [_image.user, _image.name]);
-          getImages();
         },
       ),
     ),
