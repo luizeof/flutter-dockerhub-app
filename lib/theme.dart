@@ -8,7 +8,7 @@ class DynamicDarkMode with ChangeNotifier {
   /// [_isDarkMode] para que ele seja preservado quando o app for fechado
 
   /// Verifica se o App está em Dark Mode
-  get isDarkMode => database.get('dark_mode', defaultValue: false);
+  get isDarkMode => (DateTime.now().hour > 18 || DateTime.now().hour < 8);
 
   /// Aplica o Dark Mode
   void setDarkMode() {

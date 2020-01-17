@@ -14,8 +14,6 @@ List<DockerImage> imagesCache;
 
 var database;
 
-var settings;
-
 bool isEditMode = false;
 
 Future<List<DockerImage>> getImages() async {

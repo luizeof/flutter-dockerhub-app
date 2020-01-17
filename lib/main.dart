@@ -13,7 +13,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   await Hive.initFlutter();
   database = await Hive.openBox('repositories');
-  settings = await Hive.openBox('settings');
 
   runApp(
     ChangeNotifierProvider<DynamicDarkMode>(
