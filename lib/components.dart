@@ -115,16 +115,7 @@ Widget addListItem(DockerImage _image, BuildContext context) {
           ],
         ),
       ),
-      trailing: IconButton(
-        icon: Icon(
-          Icons.add_to_photos,
-          color: Theme.of(context).primaryColor,
-          size: 32,
-        ),
-        onPressed: () {
-          database.put(_image.imageKey, _image.toJsonString());
-        },
-      ),
+      trailing: addRemoveButton(_image, context),
     ),
   );
 }
@@ -152,4 +143,30 @@ Widget deleteListItem(DockerImage _image, BuildContext context) {
       ),
     ),
   );
+}
+
+Widget addRemoveButton(DockerImage _image, BuildContext context) {
+  if (database.get(_image.imageKey) == null) {
+    return IconButton(
+      icon: Icon(
+        Icons.add_to_photos,
+        color: Theme.of(context).primaryColor,
+        size: 32,
+      ),
+      onPressed: () {
+        database.put(_image.imageKey, _image.toJsonString());
+      },
+    );
+  } else {
+    return IconButton(
+      icon: Icon(
+        Icons.delete,
+        color: Theme.of(context).accentColor,
+        size: 32,
+      ),
+      onPressed: () {
+        database.delete(_image.imageKey);
+      },
+    );
+  }
 }
