@@ -158,15 +158,10 @@ Widget addRemoveButton(DockerImage _image, BuildContext context) {
       },
     );
   } else {
-    return IconButton(
-      icon: Icon(
-        Icons.delete,
-        color: Theme.of(context).accentColor,
-        size: 32,
-      ),
-      onPressed: () {
-        database.delete(_image.imageKey);
-      },
+    return Icon(
+      Icons.assignment_turned_in,
+      color: Theme.of(context).disabledColor,
+      size: 32,
     );
   }
 }
