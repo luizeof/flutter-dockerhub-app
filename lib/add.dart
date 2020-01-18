@@ -163,18 +163,6 @@ class _AddPageState extends State<AddPage> {
               });
             },
           ),
-          IconButton(
-            icon: Icon(Icons.brightness_4),
-            onPressed: () {
-              setState(
-                () {
-                  themeProvider.isDarkMode
-                      ? themeProvider.setLightMode()
-                      : themeProvider.setDarkMode();
-                },
-              );
-            },
-          ),
         ],
       ),
       body: LayoutBuilder(

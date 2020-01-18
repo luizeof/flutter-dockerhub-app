@@ -13,7 +13,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   await Hive.initFlutter();
   database = await Hive.openBox('repositories');
-
   runApp(
     ChangeNotifierProvider<DynamicDarkMode>(
       create: (_) => DynamicDarkMode(),
@@ -60,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           body: Container(
             child: ValueListenableBuilder(
-                valueListenable: Hive.box('repos').listenable(),
+                valueListenable: Hive.box('repositories').listenable(),
                 builder: (context, box, widget) {
                   var _items = List.from(database.values);
                   var _images = <DockerImage>[];
